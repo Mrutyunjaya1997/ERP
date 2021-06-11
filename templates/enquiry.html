@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function check_namevalidity() {
+            var reg_name = /^[a-zA-Z]+$/;
+            var name = document.getElementById('name').value;
+            if (!name.match(reg_name)) {
+                document.getElementById('namespan').innerHTML = "* invalid name";
+            } else {
+                document.getElementById('namespan').innerHTML = "";
+            }
+        };
+    </script>
+    <style>
+        span {
+            color: red;
+        }
+        
+        ;
+    </style>
+</head>
+
+<body>
+    {% block content %}
+
+    <div class="container">
+        <h2>Enter Your Details Here</h2>
+        <form action="enquiry" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="username" onkeyup="check_namevalidity()" required><span class="form-control" id="namespan">hello</span>
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" placeholder="Enter city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label> Male <input type="radio" id="gender" name="gender" value="male" required> Female <input type="radio" id="gender" name="gender" value="female" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile" required>
+            </div>
+            <div class="form-group">
+                <label for="adhar">Adhar:</label>
+                <input type="text" class="form-control" id="adhar" placeholder="Enter adhar no" name="adhar" size="12" onkeypress="check_adharvalidiy()" required><span class="form-control" id="adharspan"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" onkeyup="check_passwordvalidity()" required><span class="form-control" id="passwordspan"></span>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Confirm Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="confpswd" onkeyup="check_confpasswordvalidity()" required><span class="form-control" id="confpasswordspan"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn" disabled="true">Submit</button>
+        </form>
+    </div>
+
+
+    {% endblock %}
+
+
+</body>
+
+</html>

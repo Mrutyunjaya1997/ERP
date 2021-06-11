@@ -1,0 +1,24 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="container">
+    <h2>Apply FOr Different Courses</h2>
+    <form action="applycourse" method="POST">
+        {% csrf_token %} {% if user.is_authenticated %}
+        <input type="hidden" name="username" value="{{user.username}}">
+        <div class="form-group">
+            SELECT COURSE:
+            <select name="course" id="" multiple>
+                {% for c in course %}
+                <option value="{{c.id}}">{{c.course_name}}{{c.duration}}</option>
+                {% endfor %}
+            </select> <br> SELECT MODE: online <input type="checkbox" name="online" id="Online" value="True"> offline <input type="checkbox" name="offline" id="Offline" value="True">
+            <br>
+            <input type='submit' value="SUBMIT">
+        </div>
+        {% endif %}
+    </form>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome to Programmers Point</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-sm bg-dark">
+
+        <img src="{% static 'pro.png' %}" alt="programmers point" height="70px">
+
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="enquiry" class="nav-link"> ENQUIRY</a></button> {% if user.is_authenticated %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="logout" class="nav-link"> LOG OUT</a></button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="viewcourse" class="nav-link"> VIEW COURSES</a></button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="applycourse" class="nav-link"> APPLY COURSES</a></button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="editprofile" class="nav-link"> EDIT PROFILE</a></button> {% else %}
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="login" class="nav-link"> LOG In</a></button> {% endif %}
+
+    </nav>
+    <br> {% block content %}
+
+    <div class="container-fluid">
+        {% if user.is_authenticated %}
+        <h5 class="bg-white text-center"> WELCOME {{user.username}}</h5>
+        {% endif %}
+        <h3>Centered Navbar</h3>
+        <p>Use the .justify-content-center class to center the navigation bar.</p>
+        <p>In this example, the navbar will be centered on medium, large and extra large screens. On small screens it will be displayed vertically and left-aligned (because of the .navbar-expand-sm class).</p>
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{% extends 'index.html' %} {% block content %}
+<div class="container">
+    <h2>Edit Your Details Here</h2>
+    <form action="editprofile" method="POST">
+        {% csrf_token %} {% if user.is_authenticated %} {% for student in student %} {% if student.student_id == user.id %}
+        <div class="form-group">
+            <input type="hidden" name="u_id" value="{{user.id}}">
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="username" value="{{user.username}}">
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" class="form-control" id="city" placeholder="Enter city" name="city" value="{{student.city}}">
+        </div>
+        <div class="form-group">
+            {% if student.gender == 'male' %}
+            <label for="gender">Gender:</label> Male <input type="radio" id="gender" name="gender" value="male" checked> Female <input type="radio" id="gender" name="gender" value="female"> {% else %}
+            <label for="gender">Gender:</label> Male <input type="radio" id="gender" name="gender" value="male"> Female <input type="radio" id="gender" name="gender" value="female" checked> {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile" value="{{student.mobile}}">
+        </div>
+        <div class="form-group">
+            <label for="adhar">Adhar:</label>
+            <input type="text" class="form-control" id="adhar" placeholder="Enter adhar no" name="adhar" value="{{student.adhar}}">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{student.student.email}}">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Enter Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Confirm Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="ReEnter password" name="repswd">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endif %} {% endfor %} {% endif %}
+<h2>{{user.username}}</h2>
+{% endblock %}

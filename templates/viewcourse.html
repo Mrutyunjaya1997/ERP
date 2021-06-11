@@ -1,0 +1,29 @@
+{% extends 'index.html' %} {% block content %}
+<div class="container">
+    <h2>View all the courses</h2>
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <th>COURSES</th>
+                <th>DURATION</th>
+                <th>OFFLINE</th>
+                <th>ONLINE</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in course %}
+            <tr>
+                <td>{{c.course_name}}</td>
+                <td>{{c.duration}}</td>
+                <td>{% if c.offline %}YES{% endif %}</td>
+                <td>{% if c.online %}YES{% endif %}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
